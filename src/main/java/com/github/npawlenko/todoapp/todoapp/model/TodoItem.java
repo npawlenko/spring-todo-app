@@ -3,14 +3,17 @@ package com.github.npawlenko.todoapp.todoapp.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+
+
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table
+public class TodoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String email;
-    private String login;
-    private char[] password;
+    private long id;
+    private String description;
+    private TodoItemStatus status;
+    private LocalDate date;
 }

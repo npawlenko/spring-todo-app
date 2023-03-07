@@ -5,12 +5,11 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table
+public class TodoTopic {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String email;
-    private String login;
-    private char[] password;
+    private long id;
+    private String title;
+    private String description;
 }
