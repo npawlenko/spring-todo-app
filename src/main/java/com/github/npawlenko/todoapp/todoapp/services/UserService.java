@@ -12,23 +12,21 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final UserRepository repository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserService(UserRepository repository) {
+        this.repository = repository;
     }
 
     public List<User> getUsers() {
-        return userRepository.findAll();
+        return repository.findAll();
     }
 
     public User getUserById(Long userId) throws UserNotFoundException {
-        Optional<User> userOptional = userRepository.findById(userId);
-        if(userOptional.isEmpty()) {
-            throw new UserNotFoundException(
-                    String.format("Could not find user with given ID (%d)", userId)
-            );
+        Optional<User> userOptional = repository.findById(userId);
+        if (userOptional.isEmpty()) {
+            throw new UserNotFoundException(userId);
         }
         return userOptional.get();
     }
