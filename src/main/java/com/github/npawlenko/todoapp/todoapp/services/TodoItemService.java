@@ -23,10 +23,6 @@ public class TodoItemService {
         return repository.findAll();
     }
 
-    public List<TodoItem> getTodoItemsByTodoTopicId(Long todoTopicId) {
-        return repository.findByTodoTopicId(todoTopicId);
-    }
-
     public TodoItem getTodoItemById(Long todoItemId) {
         Optional<TodoItem> todoItemOptional = repository.findById(todoItemId);
         if (todoItemOptional.isEmpty()) {

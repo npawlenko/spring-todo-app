@@ -1,5 +1,6 @@
 package com.github.npawlenko.todoapp.todoapp.controllers;
 
+import com.github.npawlenko.todoapp.todoapp.model.TodoTopic;
 import com.github.npawlenko.todoapp.todoapp.model.User;
 import com.github.npawlenko.todoapp.todoapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,20 +15,25 @@ import java.util.List;
 @RequestMapping(path = "api/users")
 public class UserController {
 
-    private final UserService userService;
+    private final UserService service;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserService service) {
+        this.service = service;
     }
 
     @GetMapping
     public List<User> getUsers() {
-        return userService.getUsers();
+        return service.getUsers();
     }
 
     @GetMapping("{id}")
     public User getUserById(@PathVariable("id") Long userId) {
-        return userService.getUserById(userId);
+        return service.getUserById(userId);
+    }
+
+    @GetMapping("{id}/topics")
+    public List<TodoTopic> getTodoTopics(@PathVariable(name = "id") Long userId) {
+        return service.getTodoTopicsByUserId(userId);
     }
 }

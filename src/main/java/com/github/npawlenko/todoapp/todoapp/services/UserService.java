@@ -1,6 +1,7 @@
 package com.github.npawlenko.todoapp.todoapp.services;
 
 import com.github.npawlenko.todoapp.todoapp.exception.UserNotFoundException;
+import com.github.npawlenko.todoapp.todoapp.model.TodoTopic;
 import com.github.npawlenko.todoapp.todoapp.model.User;
 import com.github.npawlenko.todoapp.todoapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,9 @@ public class UserService {
             throw new UserNotFoundException(userId);
         }
         return userOptional.get();
+    }
+
+    public List<TodoTopic> getTodoTopicsByUserId(Long userId) {
+        return repository.getTodoTopicsByUserId(userId);
     }
 }
