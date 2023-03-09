@@ -3,6 +3,7 @@ package com.github.npawlenko.todoapp.todoapp.controllers;
 import com.github.npawlenko.todoapp.todoapp.models.TodoTopic;
 import com.github.npawlenko.todoapp.todoapp.models.User;
 import com.github.npawlenko.todoapp.todoapp.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,12 +26,12 @@ public class UserController {
     }
 
     @PostMapping(consumes = "application/json")
-    public void createUser(@RequestBody User user) {
+    public void createUser(@Valid @RequestBody User user) {
         service.saveUser(user);
     }
 
     @PutMapping(value = "{userId}", consumes = "application/json")
-    public void updateUser(@PathVariable(name = "userId") Long userId, @RequestBody User user) {
+    public void updateUser(@PathVariable(name = "userId") Long userId, @Valid @RequestBody User user) {
         service.updateUser(user);
     }
 
