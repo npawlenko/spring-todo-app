@@ -10,9 +10,21 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class ApiExceptionHandler {
 
-    @ExceptionHandler({UserNotFoundException.class, TodoItemNotFoundException.class, TodoTopicNotFoundException.class})
-    public ResponseEntity<ErrorResponse> handleUserNotFoundException(Exception e, WebRequest request) {
+    @ExceptionHandler({
+            UserNotFoundException.class,
+            TodoItemNotFoundException.class,
+            TodoTopicNotFoundException.class}
+    )
+    public ResponseEntity<ErrorResponse> handleNotFoundException(Exception e, WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({
+            UserAlreadyExistsException.class
+    })
+    public ResponseEntity<ErrorResponse> handleAlreadyExistsException(Exception e, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 }

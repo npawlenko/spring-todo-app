@@ -4,10 +4,7 @@ import com.github.npawlenko.todoapp.todoapp.models.TodoTopic;
 import com.github.npawlenko.todoapp.todoapp.models.User;
 import com.github.npawlenko.todoapp.todoapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,13 +24,30 @@ public class UserController {
         return service.getUsers();
     }
 
-    @GetMapping("{id}")
-    public User getUserById(@PathVariable("id") Long userId) {
+    @PostMapping(consumes = "application/json")
+    public void createUser(@RequestBody User user) {
+        service.saveUser(user);
+    }
+
+    @PutMapping(value = "{userId}", consumes = "application/json")
+    public void updateUser(@PathVariable(name = "userId") Long userId, @RequestBody User user) {
+        service.updateUser(user);
+    }
+
+    @DeleteMapping("{userId}")
+    public void deleteUser(@PathVariable(name = "userId") Long userId) {
+        service.deleteUser(userId);
+    }
+
+    @GetMapping("{userId}")
+    public User getUserById(@PathVariable("userId") Long userId) {
         return service.getUserById(userId);
     }
 
-    @GetMapping("{id}/topics")
-    public List<TodoTopic> getTodoTopics(@PathVariable(name = "id") Long userId) {
+
+
+    @GetMapping("{userId}/topics")
+    public List<TodoTopic> getTodoTopics(@PathVariable(name = "userId") Long userId) {
         return service.getTodoTopicsByUserId(userId);
     }
 }
