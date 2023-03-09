@@ -1,4 +1,4 @@
-package com.github.npawlenko.todoapp.todoapp.model;
+package com.github.npawlenko.todoapp.todoapp.models;
 
 import jakarta.persistence.*;
 import lombok.Data;

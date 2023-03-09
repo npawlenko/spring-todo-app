@@ -1,7 +1,7 @@
 package com.github.npawlenko.todoapp.todoapp.services;
 
-import com.github.npawlenko.todoapp.todoapp.exception.TodoItemNotFoundException;
-import com.github.npawlenko.todoapp.todoapp.model.TodoItem;
+import com.github.npawlenko.todoapp.todoapp.exceptions.TodoItemNotFoundException;
+import com.github.npawlenko.todoapp.todoapp.models.TodoItem;
 import com.github.npawlenko.todoapp.todoapp.repositories.TodoItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
 package com.github.npawlenko.todoapp.todoapp.services;
 
-import com.github.npawlenko.todoapp.todoapp.exception.UserNotFoundException;
-import com.github.npawlenko.todoapp.todoapp.model.TodoTopic;
-import com.github.npawlenko.todoapp.todoapp.model.User;
+import com.github.npawlenko.todoapp.todoapp.exceptions.UserNotFoundException;
+import com.github.npawlenko.todoapp.todoapp.models.TodoTopic;
+import com.github.npawlenko.todoapp.todoapp.models.User;
 import com.github.npawlenko.todoapp.todoapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

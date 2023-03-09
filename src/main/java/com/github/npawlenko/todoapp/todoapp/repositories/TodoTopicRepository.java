@@ -1,7 +1,7 @@
 package com.github.npawlenko.todoapp.todoapp.repositories;
 
-import com.github.npawlenko.todoapp.todoapp.model.TodoItem;
-import com.github.npawlenko.todoapp.todoapp.model.TodoTopic;
+import com.github.npawlenko.todoapp.todoapp.models.TodoItem;
+import com.github.npawlenko.todoapp.todoapp.models.TodoTopic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

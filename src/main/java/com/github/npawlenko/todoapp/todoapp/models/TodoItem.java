@@ -1,4 +1,4 @@
-package com.github.npawlenko.todoapp.todoapp.model;
+package com.github.npawlenko.todoapp.todoapp.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,10 +6,13 @@ import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.LocalDate;
+
+
 @Data
 @Entity
 @Table
-public class TodoTopic {
+public class TodoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -17,9 +20,11 @@ public class TodoTopic {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private User user;
-
-    private String title;
+    private TodoTopic topic;
 
     private String description;
+
+    private TodoItemStatus status;
+
+    private LocalDate date;
 }

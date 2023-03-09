@@ -1,4 +1,4 @@
-package com.github.npawlenko.todoapp.todoapp.exception;
+package com.github.npawlenko.todoapp.todoapp.exceptions;
 
 public class TodoTopicNotFoundException extends RuntimeException {
     public TodoTopicNotFoundException(Long todoTopicId) {

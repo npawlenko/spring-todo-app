@@ -1,7 +1,7 @@
 package com.github.npawlenko.todoapp.todoapp.controllers;
 
-import com.github.npawlenko.todoapp.todoapp.model.TodoTopic;
-import com.github.npawlenko.todoapp.todoapp.model.User;
+import com.github.npawlenko.todoapp.todoapp.models.TodoTopic;
+import com.github.npawlenko.todoapp.todoapp.models.User;
 import com.github.npawlenko.todoapp.todoapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.github.npawlenko.todoapp.todoapp.model;
+package com.github.npawlenko.todoapp.todoapp.models;
 
 public enum TodoItemStatus {
     INCOMPLETE,

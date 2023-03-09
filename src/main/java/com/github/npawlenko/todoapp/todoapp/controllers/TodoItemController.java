@@ -1,6 +1,6 @@
 package com.github.npawlenko.todoapp.todoapp.controllers;
 
-import com.github.npawlenko.todoapp.todoapp.model.TodoItem;
+import com.github.npawlenko.todoapp.todoapp.models.TodoItem;
 import com.github.npawlenko.todoapp.todoapp.services.TodoItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
