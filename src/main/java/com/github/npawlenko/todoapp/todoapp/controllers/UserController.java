@@ -32,6 +32,7 @@ public class UserController {
 
     @PutMapping(value = "{userId}", consumes = "application/json")
     public void updateUser(@PathVariable(name = "userId") Long userId, @Valid @RequestBody User user) {
+        user.setId(userId);
         service.updateUser(user);
     }
 

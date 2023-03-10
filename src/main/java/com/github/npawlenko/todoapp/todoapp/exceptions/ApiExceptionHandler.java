@@ -1,6 +1,8 @@
 package com.github.npawlenko.todoapp.todoapp.exceptions;
 
 import com.github.npawlenko.todoapp.todoapp.models.ErrorResponse;
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -35,7 +37,7 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler({
-            UserNotFoundException.class,
+            EntityNotFoundException.class,
             TodoItemNotFoundException.class,
             TodoTopicNotFoundException.class}
     )
@@ -45,7 +47,7 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler({
-            UserAlreadyExistsException.class
+            EntityExistsException.class
     })
     public ResponseEntity<ErrorResponse> handleAlreadyExistsException(Exception e, WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(e.getMessage());

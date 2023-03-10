@@ -1,10 +1,11 @@
 package com.github.npawlenko.todoapp.todoapp.services;
 
-import com.github.npawlenko.todoapp.todoapp.exceptions.UserAlreadyExistsException;
 import com.github.npawlenko.todoapp.todoapp.exceptions.UserNotFoundException;
 import com.github.npawlenko.todoapp.todoapp.models.TodoTopic;
 import com.github.npawlenko.todoapp.todoapp.models.User;
 import com.github.npawlenko.todoapp.todoapp.repositories.UserRepository;
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,17 +27,24 @@ public class UserService {
     }
 
     public User saveUser(User user) {
-        Optional<User> userOptional = repository.findById(user.getId());
-        if (userOptional.isPresent()) {
-            throw new UserAlreadyExistsException(user.getId());
+        boolean existsLogin = repository.existsByLogin(user.getLogin());
+        if (existsLogin) {
+            throw new EntityExistsException("User with given login already exists");
         }
         return repository.save(user);
     }
 
     public User updateUser(User user) {
-        Optional<User> userOptional = repository.findById(user.getId());
-        if (userOptional.isEmpty()) {
-            throw new UserNotFoundException(user.getId());
+        boolean exists = repository.existsById(user.getId());
+        if (!exists) {
+            throw new EntityNotFoundException("User with given id does not exist");
+        }
+        Optional<User> optionalUser = repository.getUserByLogin(user.getLogin());
+        if (optionalUser.isPresent()) {
+            User foundUserWithLogin = optionalUser.get();
+            if (!foundUserWithLogin.getId().equals(user.getId())) {
+                throw new EntityExistsException("User with given login already exists!");
+            }
         }
         return repository.save(user);
     }
@@ -44,7 +52,7 @@ public class UserService {
     public void deleteUser(Long userId) {
         boolean exists = repository.existsById(userId);
         if (!exists) {
-            throw new UserNotFoundException(userId);
+            throw new EntityNotFoundException("User with given id does not exist");
         }
         repository.deleteById(userId);
     }
@@ -52,7 +60,7 @@ public class UserService {
     public User getUserById(Long userId) throws UserNotFoundException {
         Optional<User> userOptional = repository.findById(userId);
         if (userOptional.isEmpty()) {
-            throw new UserNotFoundException(userId);
+            throw new EntityNotFoundException("User with given id does not exist");
         }
         return userOptional.get();
     }

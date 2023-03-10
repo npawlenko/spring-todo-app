@@ -8,9 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    boolean existsByLogin(String login);
+    Optional<User> getUserByLogin(String login);
+
     @Query("SELECT tt FROM TodoTopic tt WHERE tt.user.id = ?1")
     List<TodoTopic> getTodoTopicsByUserId(Long userId);
 }
