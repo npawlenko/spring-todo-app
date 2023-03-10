@@ -4,21 +4,17 @@ import com.github.npawlenko.todoapp.todoapp.models.TodoTopic;
 import com.github.npawlenko.todoapp.todoapp.models.User;
 import com.github.npawlenko.todoapp.todoapp.services.UserService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/users")
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService service;
-
-    @Autowired
-    public UserController(UserService service) {
-        this.service = service;
-    }
 
     @GetMapping
     public List<User> getUsers() {

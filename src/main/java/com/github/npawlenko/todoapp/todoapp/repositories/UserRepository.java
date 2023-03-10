@@ -15,6 +15,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByLogin(String login);
     Optional<User> getUserByLogin(String login);
 
+    void deleteUserByLogin(String login);
+
     @Query("SELECT tt FROM TodoTopic tt WHERE tt.user.id = ?1")
     List<TodoTopic> getTodoTopicsByUserId(Long userId);
 }
