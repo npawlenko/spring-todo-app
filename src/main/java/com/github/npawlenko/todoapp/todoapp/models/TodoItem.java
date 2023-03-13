@@ -3,10 +3,7 @@ package com.github.npawlenko.todoapp.todoapp.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -15,6 +12,7 @@ import java.time.LocalDate;
 
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

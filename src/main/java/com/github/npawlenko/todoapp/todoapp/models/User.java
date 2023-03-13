@@ -1,15 +1,15 @@
 package com.github.npawlenko.todoapp.todoapp.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -25,14 +25,4 @@ public class User {
 
     @NotEmpty
     private char[] password;
-
-    @JsonIgnore
-    public char[] getPassword() {
-        return password;
-    }
-
-    @JsonProperty
-    public void setPassword(char[] password) {
-        this.password = password;
-    }
 }
