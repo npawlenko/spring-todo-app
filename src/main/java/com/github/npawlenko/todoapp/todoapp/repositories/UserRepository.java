@@ -12,10 +12,10 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    boolean existsByLogin(String login);
-    Optional<User> getUserByLogin(String login);
+    boolean existsByUsername(String username);
+    Optional<User> getUserByUsername(String username);
 
-    void deleteUserByLogin(String login);
+    void deleteUserByUsername(String username);
 
     @Query("SELECT tt FROM TodoTopic tt WHERE tt.user.id = ?1")
     List<TodoTopic> getTodoTopicsByUserId(Long userId);

@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public User saveUser(User user) {
-        boolean existsLogin = repository.existsByLogin(user.getLogin());
+        boolean existsLogin = repository.existsByUsername(user.getUsername());
         if (existsLogin) {
             throw new EntityExistsException("User with given login already exists");
         }
@@ -39,7 +39,7 @@ public class UserService {
         if (!exists) {
             throw new EntityNotFoundException("User with given id does not exist");
         }
-        Optional<User> optionalUser = repository.getUserByLogin(user.getLogin());
+        Optional<User> optionalUser = repository.getUserByUsername(user.getUsername());
         if (optionalUser.isPresent()) {
             User foundUserWithLogin = optionalUser.get();
             if (!foundUserWithLogin.getId().equals(user.getId())) {

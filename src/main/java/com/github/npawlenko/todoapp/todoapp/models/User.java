@@ -21,7 +21,7 @@ public class User {
 
     @Column(nullable = false)
     @NotBlank(message = "Login is mandatory")
-    private String login;
+    private String username;
 
     @NotEmpty
     private char[] password;
